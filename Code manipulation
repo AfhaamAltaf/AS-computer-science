@@ -1,0 +1,82 @@
+Module Module1
+
+    Sub Main()
+        Dim str, str2, YorN, alphachange, alphareplace, nextalpha, findchar, user_input, numbercounter1, numbercounter2, highestchar As String
+        Dim count, counter, characterlenth, counting, numofchar, highestnum As Integer
+
+        characterlenth = 0
+        str2 = ""
+        user_input = ""
+        findchar = ""
+        highestchar = ""
+        numofchar = 0
+        highestnum = 0
+
+        Console.Write("please enter a  sentence: ")
+        str = Console.ReadLine()
+        Console.Write("do you want to replace any alphabet in your str? type 'Y' if yes or any other key if no: ")
+
+        YorN = Console.ReadLine()
+        If YorN = "Y" Or YorN = "y" Then
+            Console.Write("which alphabet do you want to replace: ")
+            alphachange = Console.ReadLine()
+            Console.Write("which alphabet do you want instead: ")
+            alphareplace = Console.ReadLine()
+
+            For count = 1 To Len(str)
+                nextalpha = Mid(str, count, 1)
+                If nextalpha = alphachange Then
+                    nextalpha = alphareplace
+                End If
+                str2 = str2 + nextalpha
+
+            Next
+            Console.WriteLine("Final string = " & str2)
+        Else
+        End If
+
+
+        Console.Write("do you want to find the position of a character in your original setence? type 'Y' if yes or any other key if no:  ")
+        YorN = Console.ReadLine()
+
+        If YorN = "Y" Or YorN = "y" Then
+
+
+            Console.Write("which alphabet do you want to find: ")
+            user_input = Console.ReadLine()
+
+            For counter = 1 To Len(str)
+                findchar = Mid(str, counter, 1)
+                characterlenth = characterlenth + 1
+                If findchar = user_input Then
+                    Console.WriteLine(characterlenth & "th char, ")
+                End If
+            Next
+        Else
+        End If
+
+        Console.Write("do you want to find the character that appears the most number of times in the sentence? type 'Y' if yes or any other key if no:   ")
+        YorN = Console.ReadLine()
+        If YorN = "Y" Or YorN = "y" Then
+            For counting = 1 To Len(str)
+                numbercounter1 = Mid(str, counting, 1)
+                numofchar = 0
+                For counting2 = 1 To Len(str)
+                    numbercounter2 = Mid(str, counting2, 1)
+                    If numbercounter2 = numbercounter1 Then
+                        numofchar = numofchar + 1
+                        If numofchar > highestnum Then
+                            highestnum = numofchar
+                            highestchar = numbercounter2
+                        End If
+                    End If
+
+                Next
+               
+            Next
+            Console.WriteLine(highestchar & " comes " & highestnum & " times")
+        End If
+        Console.ReadKey()
+    End Sub
+
+End Module
