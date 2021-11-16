@@ -2,7 +2,7 @@ Module Module1
 
     Sub Main()
 
-        ' Code manipulation vRC :
+        ' String manipulation vRC :
         ' + Contains all tasks from 1 - 11
         ' + Language used is visual basic
 
