@@ -8,7 +8,7 @@ Module Module1
 
 
 
-        Dim str, cmd As String
+        Dim cmd As String
 
        
         Console.WriteLine("List of commands: ")
