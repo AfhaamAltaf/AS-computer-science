@@ -1,0 +1,468 @@
+
+
+
+        Declare cmd : String
+
+       
+        Output "List of commands: "
+        Output "Type '1' to check if your code is a pangram or not                                 (Task 1) "
+        Output "Type '2' to replace characters in the string                                       (Task 2) "
+        Output "Type '3' to find at which position a character appears in the string               (Task 3) "
+        Output "Type '4' to find the character that appears the most number of times in the string (Task 4) "
+        Output "Type '5' to find the number of vowels in a string                                  (Task 5) "
+        Output "Type '6' to do the task related to donuts                                          (Task 6) "
+        Output "Type '7' to Output the first 2 and last 2 characters of a string                   (Task 7) "
+        Output "Type '8' to change the first and rest of the repeated word to '*'                  (Task 8) "
+        Output "Type '9' to exchange first 2 characters of 2 strings                               (Task 9) "
+        Output "Type '10' to add 'ing' to verbs & 'ly'  to verbs already ending in 'ing'           (Task 10)"
+        Output "Type '11' to change 'not bad' to good and anything in between them                 (Task 11)"
+        
+
+
+        Input "What would you like to do" , cmd
+        
+        
+
+        ' FOR TASK 1:
+
+       
+
+        If cmd = "1" Then
+
+            Declare user_input : String
+            Declare next_char : Character
+            Declare ascii, count : Integer
+            Declare Pangram : Boolean
+
+            Output "Check if your code is a pangram or not"
+           
+
+            Output "Enter a sentence: "
+            Input user_input 
+
+            If Len(user_input) < 26 Then
+                Pangram <-- False
+                Output "Your sentence is not a Pangram"
+
+            Else
+
+                For ascii <--- 65 To 90
+                    Pangram <-- False
+
+
+                    For count <-- 1 To Len(user_input)
+                        next_char <-- UCase(Mid(user_input, count, 1))
+
+                        If Asc(next_char) = ascii Then
+                            Pangram <-- True
+                            Exit For
+                        End If
+
+
+                    Next
+
+                    If Pangram = False Then
+                        Output "Your sentence is not a pangram"
+                        Exit For
+                    End If
+
+
+                Next
+
+                If Pangram = True Then
+                    Output "Your sentence is a pangram"
+                End If
+
+            End If
+
+
+        End If
+
+
+
+
+        ' FOR TASK 2:
+
+
+
+        If cmd = "2" Then
+
+            Declare user_input, user_input2, alphachange, alphareplace, nextalpha : String
+            Declare count : Integer
+            user_input2 <-- ""
+
+            Output "Replace characters in your sentence"
+            
+
+            Output "Please enter a  sentence: "
+            Input user_input 
+
+
+            Output "Which character do you want to replace: "
+            Input alphachange 
+
+            Output "Which character do you want instead: "
+            Input alphareplace
+
+            For count <-- 1 To Len(user_input)
+                nextalpha <-- Mid(user_input, count, 1)
+
+                If nextalpha = alphachange Then
+                    nextalpha <-- alphareplace
+                End If
+
+                user_input2 <-- user_input + nextalpha
+            Next
+
+            Output "Final string = " & user_input2
+
+        End If
+
+
+
+        ' FOR TASK 3
+
+
+        If cmd = "3" Then
+
+
+            Declare findchar, user_input, user_input2, findspace, specialcounter : String
+            Declare count, counter, counting, characterlenth, z, alphabet, bigchar, nums, specialnum : Integer
+            characterlenth <-- 0
+            alphabet <-- 0
+            bigchar <-- 0
+            nums <-- 0
+            specialcounter <-- 0
+            user_input <-- ""
+            findchar <-- ""
+            findspace <-- ""
+            
+
+
+            Output "Find position of a character in your sentence"
+            
+
+            Output "Please enter a  sentence: "
+            Input user_input2 
+
+
+            Output "Which character do you want to find: "
+            Input user_input 
+
+            For count <-- 1 To Len(user_input2)
+                findchar <-- Mid(user_input2, count, 1)
+                characterlenth <-- characterlenth + 1
+                If findchar = user_input Then
+                    Output user_input & " = " & characterlenth & "th char, "
+                End If
+            Next
+
+            For counter <-- 1 To Len(user_input2)
+                findspace <-- Mid(user_input2, counter, 1)
+                If findspace <> " " Then
+                    z <-- 1
+                End If
+            Next
+
+            For counting <-- 1 To Len(user_input2)
+
+                specialcounter <-- Mid(user_input2, counting, 1)
+
+                Select Case specialcounter
+
+                    Case "a" To "z"
+                        alphabet <-- alphabet + 1
+                    Case "1" To "9"
+                        nums <-- nums + 1
+                    Case " "
+
+                    Case Else
+                        specialnum <-- specialnum 1
+
+                End Select
+
+            Next
+
+            
+            Output "Lenth of sentence = " & Len(user_input2) & " words (including spaces)"
+            Output "Lenth of sentence = " & z & " words (excluding spaces)"
+            Output "Number of alphabets in sentence = " & alphabet & " words"
+            Output "Number of  special characters in sentence = " & specialnum & " characters "
+            Output "Number of integers in sentence = " & nums & " integers"
+
+        End If
+
+        ' FOR TASK 4
+
+
+        If cmd = "4" Then
+
+            Declare user_input, numbercounter1, numbercounter2, highestchar, SpPos : String
+            Declare count, counter, numofchar, highestnum : Integer
+
+            highestchar <-- ""
+            numofchar <-- 0
+            highestnum <-- 0
+            SpPos <-- " "
+
+
+            Output "Find which character comes the most number of times in your sentence"
+            
+
+            Output "Please enter a  sentence: "
+            Input user_input 
+
+            For count <-- 1 To Len(user_input)
+                numbercounter1 <-- Mid(user_input, count, 1)
+                numofchar <-- 0
+
+                If numbercounter1 = SpPos Then
+                    Continue For
+                End If
+
+                For counter <-- 1 To Len(user_input)
+                    numbercounter2 <-- Mid(user_input, counter, 1)
+
+                    If numbercounter2 = numbercounter1 Then
+                        numofchar <-- numofchar + 1
+
+                        If numofchar > highestnum Then
+                            highestnum <-- numofchar
+                            highestchar <-- numbercounter2
+                        End If
+
+                    End If
+
+                Next
+
+            Next
+
+
+            Output "'" & highestchar & "'" & " comes " & highestnum & " times"
+        End If
+
+        ' For Task 5
+
+        If cmd = "5" Then
+
+            Declare count, avowel, evowel, ivowel, ovowel, uvowel : Integer
+            Declare nextvowel, user_input : String
+
+            avowel <-- 0
+            evowel <-- 0
+            ivowel <-- 0
+            ovowel <-- 0
+            uvowel <-- 0
+
+
+            Output "Find how many vowels appear in sentence"
+            
+
+            Output "Please enter a  sentence: "
+            Input user_input 
+
+            For count <-- 1 To Len(user_input)
+                nextvowel <-- Mid(user_input, count, 1)
+
+                Select Case nextvowel
+                    Case "A" : avowel <-- avowel + 1
+                    Case "E" : evowel <-- evowel + 1
+                    Case "I" : ivowel <-- ivowel + 1
+                    Case "O" : ovowel <-- ovowel + 1
+                    Case "U" : uvowel <-- uvowel + 1
+
+                End Select
+
+
+            Next
+            Output "A = " & avowel
+            Output "E = " & evowel
+            Output "I = " & ivowel
+            Output "O = " & ovowel
+            Output "U = " & uvowel
+
+        End If
+
+        ' FOR TASK 6
+
+        If cmd = "6" Then
+
+            Declare inpdonut : Integer
+
+
+            Output "The task related to donuts"
+            
+            Output "Enter the number of donuts: "
+            Input inpdonut 
+
+            If inpdonut < 10 Then
+                Output "Number of Donuts: " & inpdonut
+
+            ElseIf inpdonut > 10 Then
+                Output "Number of Donuts: Many"
+
+            End If
+
+        End If
+
+        ' FOR TASK 7
+
+
+
+
+
+        If cmd = "7" Then
+
+            Declare s : String
+
+            Output "Output the first 2 and last 2 characters of a string"
+            
+
+            Output "Input a word: " 
+            Input s 
+
+
+            If Len(s) > 1 Then
+                Output Left(s, 2)
+                Output Right(s, 2)
+
+            ElseIf Len(s) < 2 Then
+                Output s
+
+            End If
+
+        End If
+
+        ' FOR TASK 8
+
+
+
+
+        If cmd = "8" Then
+
+            Declare count, snum : Integer
+            Declare s, snext : String
+            Declare schar : Character
+
+            snext <-- ""
+            snum <-- 0
+
+
+            Output "Convert the repeated characters of the first char of the sentence to '*' "
+            
+
+            Output "Enter a sentence: " 
+            Input s 
+
+            schar <-- s
+
+            For count <-- 1 To Len(s)
+                snext <-- Mid(s, count, 1)
+
+
+                If snext = schar And snum > 0 Then
+                    snext <-- "*"
+                End If
+
+                snum <-- snum + 1
+
+                Output snext
+
+            Next
+
+        End If
+
+        ' FOR TASK 9
+
+
+        If cmd = "9" Then
+
+            Declare a, b, afirst2, bfirst2, anext, bnext : String
+
+
+            anext <-- ""
+
+
+            Output "Swap the first 2 characters of the 2 strings"
+           
+     
+
+            Output "Enter string A: "
+            Input a 
+            Output"Enter string B: "
+            Input b 
+
+            afirst2 <-- Left(a, 2)
+            bfirst2 <-- Left(b, 2)
+
+            anext <-- Mid(a, 3, Len(a))
+            bnext <-- Mid(b, 3, Len(b))
+
+            Output bfirst2 & anext & " " & afirst2 & bnext
+
+
+        End If
+
+
+        ' FOR  TASK 1O
+
+        If cmd = "10" Then
+
+            Declare verb : String
+
+            Output "Verbs"
+            
+
+            Output "Enter verb: " 
+            Input verb 
+
+            If Len(verb) > 2 Then
+
+
+                If Right(verb, 3) <> "ing" Then
+                    Output verb & "ing"
+                ElseIf Right(verb, 3) = "ing" Then
+                    Output verb & "ly"
+                End If
+
+            ElseIf Len(verb) < 3 Then
+                Output(verb)
+
+            End If
+
+
+        End If
+
+        ' FOR TASK 11
+
+
+        If cmd = "11" Then
+
+            Declare count, counter, badreplace : Integer
+            Declare userinput : String
+
+
+            Output "Change 'not bad' to 'good'"
+            
+
+            Output "Enter sentence: " 
+            Input userinput 
+
+            For count <-- 1 To Len(userinput)
+
+                For counter <-- 1 To Len(userinput)
+
+                    If LCase(Mid(userinput, count, 3)) = "not" And LCase(Mid(userinput, counter, 3)) = "bad" Then
+                        badreplace <-- (counter - count)
+                        userinput <-- Left(userinput, (count - 1)) & "good" & Mid(userinput, (counter + 3), (Len(userinput) - (counter + 2)))
+                    End If
+
+                Next
+
+            Next
+            Output "Your Output: " & userinput
+        End If
+
+
+
+
